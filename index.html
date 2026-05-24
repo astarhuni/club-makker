@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club Makker - Professional Website Builder</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#070b16;
+color:white;
+overflow-x:hidden;
+}
+
+:root{
+--primary:#00d9ff;
+--secondary:#7b61ff;
+--card:#12192b;
+--text:#c9d5f2;
+}
+
+.container{
+width:90%;
+max-width:1250px;
+margin:auto;
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+z-index:999;
+background:rgba(0,0,0,0.55);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.navbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 0;
+}
+
+.logo{
+font-size:30px;
+font-weight:800;
+color:var(--primary);
+}
+
+.nav-links{
+display:flex;
+gap:22px;
+flex-wrap:wrap;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-size:15px;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:var(--primary);
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+width:700px;
+height:700px;
+background:radial-gradient(circle,var(--secondary),transparent 70%);
+right:-250px;
+top:-250px;
+opacity:.35;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+animation:fadeUp 1s ease;
+}
+
+.hero h1{
+font-size:72px;
+line-height:1.1;
+margin-bottom:24px;
+max-width:900px;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.8;
+max-width:720px;
+color:var(--text);
+margin-bottom:35px;
+}
+
+.btn{
+display:inline-block;
+padding:16px 32px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+text-decoration:none;
+color:white;
+font-weight:700;
+border-radius:16px;
+transition:.4s;
+}
+
+.btn:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 40px rgba(0,217,255,0.35);
+}
+
+.section{
+padding:110px 0;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:60px;
+}
+
+.section-title h2{
+font-size:48px;
+margin-bottom:14px;
+}
+
+.section-title p{
+color:var(--text);
+}
+
+.grid{
+display:grid;
+gap:24px;
+}
+
+.cards{
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+}
+
+.card{
+background:var(--card);
+padding:32px;
+border-radius:24px;
+border:1px solid rgba(255,255,255,0.08);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+border-color:var(--primary);
+}
+
+.card h3{
+margin-bottom:15px;
+font-size:24px;
+}
+
+.card p,
+.card li{
+color:var(--text);
+line-height:1.8;
+}
+
+.price{
+font-size:46px;
+font-weight:800;
+margin:20px 0;
+}
+
+.features{
+list-style:none;
+}
+
+.features li{
+margin-bottom:10px;
+}
+
+.contact-box{
+background:linear-gradient(145deg,#111a31,#182340);
+padding:45px;
+border-radius:28px;
+}
+
+form{
+display:grid;
+gap:18px;
+}
+
+input,
+textarea{
+padding:16px;
+background:#0d1528;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:14px;
+color:white;
+outline:none;
+}
+
+textarea{
+resize:none;
+min-height:150px;
+}
+
+footer{
+background:#05070d;
+padding:80px 0 30px;
+border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.footer-links a{
+display:block;
+margin-bottom:12px;
+text-decoration:none;
+color:#c7d1ee;
+}
+
+.footer-bottom{
+text-align:center;
+margin-top:40px;
+color:#94a3c9;
+}
+
+.legal-box{
+background:#0f1729;
+padding:35px;
+border-radius:24px;
+margin-bottom:24px;
+}
+
+.legal-box h3{
+margin-bottom:16px;
+font-size:28px;
+}
+
+.legal-box p,
+.legal-box li{
+line-height:1.9;
+color:var(--text);
+}
+
+.animate{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.animate.active{
+opacity:1;
+transform:translateY(0);
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:900px){
+.hero h1{
+font-size:48px;
+}
+
+.nav-links{
+display:none;
+}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container navbar">
+<div class="logo">Club Makker</div>
+
+<nav class="nav-links">
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#pricing">Pricing</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#request">Request Website</a>
+<a href="#faq">FAQ</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+<a href="#legal">Legal</a>
+</nav>
+</div>
+</header>
+
+<section class="hero" id="home">
+<div class="container hero-content">
+<h1>Professional Websites That Grow Your Business</h1>
+
+<p>
+Club Makker creates premium responsive websites, modern landing pages, custom UI systems, and high-converting digital experiences with smooth animations and production-quality performance.
+</p>
+
+<a class="btn" href="#request">Start Your Project</a>
+</div>
+</section>
+
+<section class="section animate" id="services">
+<div class="container">
+<div class="section-title">
+<h2>Our Services</h2>
+<p>Professional digital services for modern businesses.</p>
+</div>
+
+<div class="grid cards">
+<div class="card">
+<h3>Business Websites</h3>
+<p>Responsive and premium business websites optimized for trust and conversions.</p>
+</div>
+
+<div class="card">
+<h3>Landing Pages</h3>
+<p>High-converting landing pages for campaigns, products, and ads.</p>
+</div>
+
+<div class="card">
+<h3>Custom UI/UX</h3>
+<p>Professional interfaces with modern layouts and smooth user experience.</p>
+</div>
+
+<div class="card">
+<h3>Responsive Design</h3>
+<p>Perfect performance across mobile, tablet, and desktop devices.</p>
+</div>
+
+<div class="card">
+<h3>SEO Structure</h3>
+<p>Clean code and optimized structure for better search engine visibility.</p>
+</div>
+
+<div class="card">
+<h3>Website Maintenance</h3>
+<p>Ongoing updates, optimization, and technical improvements.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section animate" id="pricing">
+<div class="container">
+<div class="section-title">
+<h2>Pricing Plans</h2>
+<p>Flexible pricing for startups, businesses, and brands.</p>
+</div>
+
+<div class="grid cards">
+<div class="card">
+<h3>Starter</h3>
+<div class="price">₹4,999</div>
+<ul class="features">
+<li>Responsive Website</li>
+<li>5 Pages</li>
+<li>Basic SEO</li>
+<li>Contact Section</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Professional</h3>
+<div class="price">₹12,999</div>
+<ul class="features">
+<li>Premium UI/UX</li>
+<li>10+ Pages</li>
+<li>Smooth Animations</li>
+<li>Advanced Layouts</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Enterprise</h3>
+<div class="price">Custom</div>
+<ul class="features">
+<li>Custom Web Systems</li>
+<li>Advanced Features</li>
+<li>Premium Support</li>
+<li>Custom Integrations</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section animate" id="portfolio">
+<div class="container">
+<div class="section-title">
+<h2>Portfolio</h2>
+<p>Modern design styles and project examples.</p>
+</div>
+
+<div class="grid cards">
+<div class="card">
+<h3>Corporate Business Site</h3>
+<p>Premium dark UI with modern sections and animations.</p>
+</div>
+
+<div class="card">
+<h3>Startup Landing Page</h3>
+<p>High-converting startup page with modern responsive layout.</p>
+</div>
+
+<div class="card">
+<h3>Creative Agency Design</h3>
+<p>Interactive smooth website experience with premium UI.</p>
+</div>
+
+<div class="card">
+<h3>Ecommerce Interface</h3>
+<p>Product-focused ecommerce layouts with clean navigation.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section animate" id="request">
+<div class="container">
+<div class="section-title">
+<h2>Request Your Custom Website</h2>
+<p>Tell us your business requirements and design ideas.</p>
+</div>
+
+<div class="contact-box">
+<form>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Your Email">
+<input type="text" placeholder="Business Name">
+<textarea placeholder="Describe your website design and features..."></textarea>
+
+<a class="btn" href="https://t.me/razal?text=Hello%20Club%20Makker%2C%20I%20want%20a%20custom%20website.%20Please%20share%20pricing%20and%20design%20details." target="_blank">
+Order Now
+</a>
+</form>
+</div>
+</div>
+</section>
+
+<section class="section animate" id="faq">
+<div class="container">
+<div class="section-title">
+<h2>Frequently Asked Questions</h2>
+</div>
+
+<div class="grid cards">
+<div class="card">
+<h3>How long does development take?</h3>
+<p>Most projects are completed within 3 to 14 business days.</p>
+</div>
+
+<div class="card">
+<h3>Are websites mobile responsive?</h3>
+<p>Yes, every website is fully optimized for all devices.</p>
+</div>
+
+<div class="card">
+<h3>Can I request custom design?</h3>
+<p>Yes, fully custom UI/UX designs are available.</p>
+</div>
+
+<div class="card">
+<h3>How do I contact support?</h3>
+<p>You can directly contact us through Telegram.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section animate" id="about">
+<div class="container">
+<div class="section-title">
+<h2>About Club Makker</h2>
+</div>
+
+<div class="card">
+<p>
+Club Makker is a modern website design and development brand focused on creating premium websites for startups, creators, agencies, and online businesses.
+</p>
+
+<br>
+
+<p>
+We specialize in responsive website development, UI/UX design, landing pages, custom web interfaces, and smooth digital experiences built with performance and scalability in mind.
+</p>
+</div>
+</div>
+</section>
+
+<section class="section animate" id="contact">
+<div class="container">
+<div class="section-title">
+<h2>Contact Us</h2>
+<p>Reach out for project discussions and support.</p>
+</div>
+
+<div class="contact-box">
+<form>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Your Email">
+<textarea placeholder="Your Message"></textarea>
+
+<a class="btn" href="https://t.me/razal" target="_blank">
+Contact on Telegram
+</a>
+</form>
+</div>
+</div>
+</section>
+
+<section class="section animate" id="legal">
+<div class="container">
+<div class="section-title">
+<h2>Legal Information</h2>
+<p>Professional legal pages and policies.</p>
+</div>
+
+<div class="legal-box">
+<h3>Privacy Policy</h3>
+<p>
+Club Makker collects limited user information including name, email, and project requirements for communication and service delivery purposes. We implement reasonable measures to protect data and do not intentionally sell personal information.
+</p>
+</div>
+
+<div class="legal-box">
+<h3>Terms & Conditions</h3>
+<p>
+By using Club Makker services, users agree to provide lawful content and accurate project details. Payments may require advance deposits depending on project scope.
+</p>
+</div>
+
+<div class="legal-box">
+<h3>Refund Policy</h3>
+<p>
+Refund requests are reviewed based on project stage and delivered work. Completed design or development work may not be refundable.
+</p>
+</div>
+
+<div class="legal-box">
+<h3>Cookie Policy</h3>
+<p>
+This website may use cookies and analytics tools to improve user experience and monitor website performance.
+</p>
+</div>
+
+<div class="legal-box">
+<h3>Disclaimer</h3>
+<p>
+Club Makker provides website services and information on an “as available” basis without guaranteeing uninterrupted availability or compatibility.
+</p>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+
+<div>
+<h3>Club Makker</h3>
+<p>
+Premium website design and development services with modern UI/UX and responsive experiences.
+</p>
+</div>
+
+<div class="footer-links">
+<h4>Navigation</h4>
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#pricing">Pricing</a>
+<a href="#portfolio">Portfolio</a>
+</div>
+
+<div class="footer-links">
+<h4>Support</h4>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+<a href="#request">Request Website</a>
+</div>
+
+<div class="footer-links">
+<h4>Legal</h4>
+<a href="#legal">Privacy Policy</a>
+<a href="#legal">Terms & Conditions</a>
+<a href="#legal">Refund Policy</a>
+<a href="#legal">Cookie Policy</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Club Makker. All rights reserved.
+</div>
+</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('active');
+}
+})
+},{threshold:0.2});
+
+const elements=document.querySelectorAll('.animate');
+elements.forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
